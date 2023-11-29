@@ -101673,22 +101673,6 @@ var render = function () {
                     },
                     [_vm._v("Login\n                    ")]
                   ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    { staticClass: "text-center" },
-                    [
-                      _vm._v(
-                        "No tienes una cuenta? \n                        "
-                      ),
-                      _c(
-                        "el-link",
-                        { attrs: { type: "primary", href: "/register" } },
-                        [_vm._v("Registrate aqui")]
-                      ),
-                    ],
-                    1
-                  ),
                 ],
                 1
               ),
