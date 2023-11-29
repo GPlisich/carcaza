@@ -60,12 +60,18 @@
     
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Somil S.A.</span>
+      <span class="brand-text font-weight-light">Somil S.A. - 
+        @if(session()->exists('nameUser'))
+          {{session('nameUser')}}
+        @else
+          Invitado
+        @endif
+      </span>
     </a>
     
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
+      {{-- <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
             @if(session()->exists('nameUser'))
@@ -74,7 +80,7 @@
               <a href="#" class="d-block">Invitado</a>
             @endif
           </div>
-      </div>
+      </div> --}}
       
       {{-- <!-- SidebarSearch Form -->
       <div class="form-inline">

@@ -88,28 +88,42 @@ class LoginController extends Controller
                         ->join('sector', 'rol.sector_id', '=', 'sector.id')
                         ->join('users','permisos.user_id','=','users.id')
                         ->select('rol.id AS rol_id', 'rol.nombre AS rol', 'sector.id AS sector_id', 'sector.nombre AS sector','users.email')->first();
-                  
-                $partes = explode("@", $query->email);
-                $login = $partes[0];
-                $login_formateado = ucwords($login);
-                $primera_letra = substr($login_formateado, 0, 1);
-                $resto_nombre = ucwords(substr($login_formateado, 1));
-                $nombre =$primera_letra.' '.$resto_nombre;
                 
-                Auth::loginUsingId($responseCode->user_id);
-                Session::put(['userLogin'=>True]);
-                Session::put(['sector'=>$query->sector]);
-                Session::put(['rol'=>$query->rol]);
-                Session::put(['id'=>$responseCode->user_id]);
-                Session::put(['nameUser'=>$nombre]);
+                if($query->rol=='invitado'){
+                    $partes = explode("@", $query->email);
+                    $login = $partes[0];
+                    $login_formateado = ucwords($login);
+                    $primera_letra = substr($login_formateado, 0, 1);
+                    $resto_nombre = ucwords(substr($login_formateado, 1));
+                    $nombre =$primera_letra.' '.$resto_nombre;
+                    
+                    Auth::loginUsingId($responseCode->user_id);
+                    Session::put(['userLogin'=>True]);
+                    Session::put(['sector'=>$query->sector]);
+                    Session::put(['rol'=>$query->rol]);
+                    Session::put(['id'=>$responseCode->user_id]);
+                    Session::put(['nameUser'=>$nombre]);
 
+                    return response()->json([
+                        "redirectTo"=>$redirect_to,
+                        "message"=>'Invitado',
+                    ]);
+                }else{
+
+                    Auth::loginUsingId($responseCode->user_id);
+                    Session::put(['userLogin'=>True]);
+                    Session::put(['sector'=>$query->sector]);
+                    Session::put(['rol'=>$query->rol]);
+                    Session::put(['id'=>$responseCode->user_id]);
+                    Session::put(['nameUser'=>$query->rol]);
+
+                    return response()->json([
+                        "redirectTo"=>'',
+                        "message"=>'',
+                    ]);
+
+                }
                 
-
-                return response()->json([
-                    "redirectTo"=>$redirect_to,
-                    "message"=>'',
-                ]);
-
             }
 
         } catch (Exception $e) {

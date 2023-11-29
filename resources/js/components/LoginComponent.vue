@@ -24,9 +24,9 @@
                             type="primary"
                             ref="sumbit">Login
                         </el-button>
-                        <p class="text-center">No tienes una cuenta? 
+                        <!-- <p class="text-center">No tienes una cuenta? 
                             <el-link type="primary" href="/register">Registrate aqui</el-link>
-                        </p>
+                        </p> -->
                     </div>
 
 
