@@ -63,7 +63,7 @@ class LoginController extends Controller
             //Create Client object to deal with
             $client = new Client();
 
-            $url = 'http://127.0.0.1:8000/api/login';
+            $url = 'http://127.0.0.1:8001/api/login';
 
             $headers = [
                 'Content-Type' => 'application/json',
