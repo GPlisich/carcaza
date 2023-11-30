@@ -61,7 +61,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <span class="brand-text font-weight-light">Somil S.A. - 
-        @if(session()->exists('nameUser'))
+        @if(session()->exists('nameUser') && session('nameUser')!='Invitado')
           {{session('nameUser')}}
         @else
           Invitado

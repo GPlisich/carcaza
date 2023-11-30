@@ -89,7 +89,7 @@ class LoginController extends Controller
                         ->join('users','permisos.user_id','=','users.id')
                         ->select('rol.id AS rol_id', 'rol.nombre AS rol', 'sector.id AS sector_id', 'sector.nombre AS sector','users.email')->first();
                 
-                if($query->rol=='invitado'){
+                if($query->rol!='Invitado'){
                     $partes = explode("@", $query->email);
                     $login = $partes[0];
                     $login_formateado = ucwords($login);
@@ -106,7 +106,7 @@ class LoginController extends Controller
 
                     return response()->json([
                         "redirectTo"=>$redirect_to,
-                        "message"=>'Invitado',
+                        "message"=>'',
                     ]);
                 }else{
 
@@ -118,7 +118,7 @@ class LoginController extends Controller
                     Session::put(['nameUser'=>$query->rol]);
 
                     return response()->json([
-                        "redirectTo"=>'',
+                        "redirectTo"=>null,
                         "message"=>'',
                     ]);
 

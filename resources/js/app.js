@@ -22,8 +22,8 @@ Vue.use(ElementUI);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('invitado-component', require('./components/InvitadoComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

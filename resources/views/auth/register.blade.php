@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <register-component></register-component>
+    {{-- <register-component></register-component> --}}
 </div>
 @endsection

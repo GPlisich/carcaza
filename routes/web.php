@@ -14,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (session()->exists('userLogin')) {
+    if (session()->exists('userLogin') && session('rol')=='Invitado') {
+        return redirect('invitado');
+    }else if (session()->exists('userLogin')) {
         return redirect('home');
-    } else{
+    }else{
         return view('auth.login');	
     }
 });
 
 Route::get('/home', 'HomeController@index');
+Route::get('/invitado', 'InvitadoController@index');
 Route::get('/login', 'Auth\LoginController@show')->name('login');
 Route::get('/register', 'Auth\RegisterController@show');
 Route::post('/login/logout', 'Auth\LoginController@logout');
