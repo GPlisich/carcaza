@@ -23,12 +23,14 @@
 <body>
     <div>
         <div class="row" id="body-row">
-    
+            
             {{-- MAIN --}}
             <main class="col py-4">
                 <div id="app">
                     <div class="container">
-                        <login-component></login-component>   
+                        <login-component>
+                            @csrf
+                        </login-component>   
                     </div>
                 </div>
             </main>

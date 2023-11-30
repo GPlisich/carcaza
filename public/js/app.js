@@ -6772,6 +6772,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6880,27 +6882,31 @@ __webpack_require__.r(__webpack_exports__);
     },
     loginAction: function loginAction(form) {
       var _this = this;
-      this.$refs[form].validate(function (valid) {
-        if (valid) {
-          var form = _this.form;
-          _this.isSubmitting = true;
-          axios.post('/login/loguearse', form).then(function (response) {
-            var mensaje = response.data.message;
-            if (mensaje != '') {
-              _this.showError = true;
-              _this.validationErrors = response.data.message;
-              _this.isSubmitting = false;
-            } else {
-              var redirectTo = response.data.redirectTo;
-              localStorage.setItem('token', response.data.token);
-              if (redirectTo != null) {
-                window.location.href = '/' + redirectTo;
+      axios.get('/login/nuevoToken').then(function (response) {
+        var nuevoToken = response.data.token;
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = nuevoToken;
+        _this.$refs[form].validate(function (valid) {
+          if (valid) {
+            var form = _this.form;
+            _this.isSubmitting = true;
+            axios.post('/login/loguearse', form).then(function (response) {
+              var mensaje = response.data.message;
+              if (mensaje != '') {
+                _this.showError = true;
+                _this.validationErrors = response.data.message;
+                _this.isSubmitting = false;
               } else {
-                window.location.href = '/';
+                var redirectTo = response.data.redirectTo;
+                localStorage.setItem('token', response.data.token);
+                if (redirectTo != null) {
+                  window.location.href = '/' + redirectTo;
+                } else {
+                  window.location.href = '/';
+                }
               }
-            }
-          });
-        }
+            });
+          }
+        });
       });
     }
   }
@@ -101528,8 +101534,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* binding */ render),
 /* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {}
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    Hola esta es la vista de empleado\n")])
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

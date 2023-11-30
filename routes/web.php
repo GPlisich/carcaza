@@ -23,10 +23,16 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/login/nuevoToken', function () {
+    return response()->json(['token' => csrf_token()]);
+});
+
+
+Route::get('/home', 'HomeController@index')->middleware('checkUserRole');;
 Route::get('/invitado', 'InvitadoController@index');
 Route::get('/login', 'Auth\LoginController@show')->name('login');
 Route::get('/register', 'Auth\RegisterController@show');
 Route::post('/login/logout', 'Auth\LoginController@logout');
+
 Route::post('/login/loguearse', 'Auth\LoginController@loguearse');
 // Route::resource('/login', 'Auth\LoginController');

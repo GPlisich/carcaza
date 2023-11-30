@@ -79,7 +79,12 @@ export default {
         },
         
         loginAction(form){
-            this.$refs[form].validate((valid) => {   
+            axios.get('/login/nuevoToken').then(response =>{
+
+                const nuevoToken = response.data.token;
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = nuevoToken;
+
+                this.$refs[form].validate((valid) => {   
                 if(valid){
                     var form = this.form;
                     this.isSubmitting = true;
@@ -102,6 +107,9 @@ export default {
                     })
                 }
             });
+
+            });
+
         }
     },
 };

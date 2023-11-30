@@ -1,5 +1,7 @@
 <template>
-    Hola esta es la vista de empleado
+    <div>
+        Hola esta es la vista de empleado
+    </div>
 </template>
 
 <script>
