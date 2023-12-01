@@ -21,23 +21,29 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <div class="row" id="body-row">
-    
-            {{-- MAIN --}}
-            <main class="col py-4">
-                <div id="app">
-                    <div class="container">
-                        <invitado-component></invitado-component>   
-                    </div>
-                </div>
-            </main>
-
-            
-            
+    <header class="p-3 bg-dark text-white">
+        <div class="text-end">
+            @if(session()->exists('userLogin') && session('userLogin')==true)
+                <button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-warning">Logout</button>
+                
+            @endif
+        </div>
         
-        </div><!-- body-row END -->
-    </div>
+        <form id="logout-form" action="/login/logout" method="POST" class="d-none">
+            @csrf
+        </form>
+
+    </header>
+    <div class="row" id="body-row">
+        
+        {{-- MAIN --}}
+        <div id="app">
+            <div class="container">
+                <invitado-component></invitado-component>   
+            </div>
+        </div>
+    
+    </div><!-- body-row END -->
 </body>
 
 </html>

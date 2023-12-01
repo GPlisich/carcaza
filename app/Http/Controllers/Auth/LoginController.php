@@ -145,7 +145,6 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
-
         /*Elimino la sesion de Laravel*/
         Auth::logout();
 

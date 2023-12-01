@@ -1,7 +1,5 @@
 <template>
-    <div>
-        Hola esta es la vista de empleado
-    </div>
+    
 </template>
 
 <script>
@@ -19,7 +17,7 @@ export default {
         
     },
     methods: {
-
+        
         
     },
 };
